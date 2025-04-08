@@ -11,6 +11,18 @@ jobs:
   test:
     uses: yeencloud/dpl-ci/.github/workflows/test.yml@main
 
+  todo-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create issues from TODOs
+        uses: alstr/todo-to-issue-action@v5.1.11
+
   build-and-publish:
     needs: test
     uses: yeencloud/dpl-ci/.github/workflows/package.yml@main

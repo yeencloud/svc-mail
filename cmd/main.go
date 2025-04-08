@@ -2,35 +2,23 @@ package main
 
 import (
 	"context"
-	"errors"
 
-	"github.com/yeencloud/bpt-service/internal/adapters/database"
-	"github.com/yeencloud/bpt-service/internal/adapters/http"
-	"github.com/yeencloud/bpt-service/internal/service"
 	baseservice "github.com/yeencloud/lib-base"
+	sharedConfig "github.com/yeencloud/lib-shared/config"
+	"github.com/yeencloud/svc-mail/internal/adapters/event"
+	"github.com/yeencloud/svc-mail/internal/adapters/smtp"
+	"github.com/yeencloud/svc-mail/internal/adapters/templater"
+	"github.com/yeencloud/svc-mail/internal/domain/config"
+	"github.com/yeencloud/svc-mail/internal/service"
 )
 
+// TODO: Add metrics for sent mail
 func main() {
-	baseservice.Run("base-service", baseservice.Options{
-		UseDatabase: true,
+	baseservice.Run("svc-mail", baseservice.Options{
+		UseDatabase: false,
 		UseEvents:   true,
 	}, func(ctx context.Context, svc *baseservice.BaseService) error {
-		dbEngine, err := svc.GetDatabase()
-		if err != nil {
-			return err
-		}
-
-		db, err := database.NewDatabase(ctx, dbEngine.Gorm)
-		if err != nil {
-			return err
-		}
-
-		httpServer, err := svc.GetHttpServer()
-		if err != nil {
-			return err
-		}
-
-		mqPublisher, err := svc.GetMqPublisher()
+		templaterConfig, err := sharedConfig.FetchConfig[config.TemplaterConfig]()
 		if err != nil {
 			return err
 		}
@@ -40,25 +28,25 @@ func main() {
 			return err
 		}
 
-		myChannelReceiver := mqSubscriber.Subscribe("my-channel")
-		myChannelReceiver.Handle("PING_EVENT", func(ctx context.Context, event any) error {
-			return nil
-		})
-		myChannelReceiver.Handle("PONG_EVENT", func(ctx context.Context, event any) error {
-			return nil
-		})
+		templateEngine, err := templater.NewTemplater(templaterConfig)
+		if err != nil {
+			return err
+		}
 
-		otherChannelReceiver := mqSubscriber.Subscribe("other-channel")
-		otherChannelReceiver.Handle("PING_EVENT", func(ctx context.Context, event any) error {
-			return nil
-		})
-		otherChannelReceiver.Handle("PONG_EVENT", func(ctx context.Context, event any) error {
-			return errors.New("oh no")
-		})
+		smtpConfig, err := sharedConfig.FetchConfig[config.SmtpConfig]()
+		if err != nil {
+			return err
+		}
 
-		usecases := service.NewUsecases(database.NewViewOriginRepo(), mqPublisher)
-		http.NewHTTPServer(httpServer, usecases, db.Gorm)
+		smtpClient, err := smtp.NewSmtpClient(smtpConfig)
+		if err != nil {
+			return err
+		}
 
-		return nil
+		usecases := service.NewUsecases(templateEngine, smtpClient)
+
+		subscriber := event.NewEventHandler(mqSubscriber, usecases)
+
+		return subscriber.Listen(ctx)
 	})
 }

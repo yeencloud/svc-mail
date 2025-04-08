@@ -3,9 +3,9 @@ package ports
 import (
 	"context"
 
-	"github.com/yeencloud/bpt-service/internal/domain"
+	"github.com/yeencloud/svc-mail/internal/domain"
 )
 
 type Usecases interface {
-	Viewed(ctx context.Context, origin domain.ViewOrigin) ([]domain.ViewOrigin, error)
+	UserCreated(ctx context.Context, origin domain.UserCreated) error
 }

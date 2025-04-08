@@ -1,21 +1,17 @@
 package service
 
 import (
-	"github.com/yeencloud/bpt-service/internal/ports"
-	"github.com/yeencloud/bpt-service/internal/ports/repository"
-	"github.com/yeencloud/lib-base/events"
+	"github.com/yeencloud/svc-mail/internal/ports"
 )
 
 type service struct {
-	ports *ports.Ports
+	templater ports.Templater
+	smtp      ports.Smtp
 }
 
-func NewUsecases(viewRepository database.ViewOriginRepository, eventPublisher events.Publisher) service {
+func NewUsecases(templater ports.Templater, smtp ports.Smtp) service {
 	return service{
-		ports: &ports.Ports{
-			ViewOriginRepo: viewRepository,
-
-			EventPublisher: eventPublisher,
-		},
+		templater: templater,
+		smtp:      smtp,
 	}
 }
