@@ -9,10 +9,10 @@ import (
 )
 
 func NewTemplater(config *config.TemplaterConfig) (ports.Templater, error) {
-
-	switch config.Engine {
-	case "HERMES":
+	if config.Engine == "HERMES" {
 		return hermes.NewHermes(), nil
 	}
+
+	// TODO: Custom error
 	return nil, errors.New("Templater engine not supported")
 }
