@@ -163,8 +163,12 @@ github.com/vanng822/go-premailer v1.24.0 h1:b4MpHLVdlA7QOwk5OJIEvWnIpCCdEhEDQpJ/
 github.com/vanng822/go-premailer v1.24.0/go.mod h1:gjLku4P5inmyu+MM7544lOjhaW8F3TdIqboFVcZGwZE=
 github.com/wneessen/go-mail v0.6.2 h1:c6V7c8D2mz868z9WJ+8zDKtUyLfZ1++uAZmo2GRFji8=
 github.com/wneessen/go-mail v0.6.2/go.mod h1:L/PYjPK3/2ZlNb2/FjEBIn9n1rUWjW+Toy531oVmeb4=
+github.com/yeencloud/lib-base v0.2.5 h1:UfOq4qT40GqrNYbloLtOWHvzvMNHY9wzIeduryIHL54=
+github.com/yeencloud/lib-base v0.2.5/go.mod h1:vN0z125iQBNz7phu3ej0FExL2dHP8Vg4Xb+SCphi/8w=
 github.com/yeencloud/lib-database v0.2.3 h1:UfTjuH59PvvWyiJU4ufLA1NNJo3y4xk7Cjz7CHmhho0=
 github.com/yeencloud/lib-database v0.2.3/go.mod h1:OHUM9kdrWl6uEY0mcgpk1L6PSw5EyE2ulgbXnDejKLQ=
+github.com/yeencloud/lib-events v0.1.1 h1:pjtqZhop6wBWf9idF0RlM1NikOIVBhSgj79UzsajaWI=
+github.com/yeencloud/lib-events v0.1.1/go.mod h1:noNhkbgNAbWQax7pcKCrs3SCb3gfg7mG7ME9lsWdAfY=
 github.com/yeencloud/lib-httpserver v0.2.3 h1:4xosjYRpepGDyuZHq0Sdv8YiWjmnaWz3RyP173KiXwI=
 github.com/yeencloud/lib-httpserver v0.2.3/go.mod h1:f85JKpy/KOyVkbiY8rmCHQo3sRm+Rm0eNkzTHd34AQM=
 github.com/yeencloud/lib-metrics v0.2.4 h1:ashzoOuPrvCsIgf37s9gjVu3A/YpIbsLJFfeX/2zS7s=
