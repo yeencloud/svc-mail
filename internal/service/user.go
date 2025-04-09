@@ -3,7 +3,9 @@ package service
 import (
 	"context"
 
+	metrics "github.com/yeencloud/lib-metrics"
 	"github.com/yeencloud/svc-mail/internal/domain"
+	mailMetrics "github.com/yeencloud/svc-mail/internal/domain/metrics"
 )
 
 func (s service) UserCreated(ctx context.Context, userCreated domain.UserCreated) error {
@@ -12,7 +14,19 @@ func (s service) UserCreated(ctx context.Context, userCreated domain.UserCreated
 		return err
 	}
 
-	err = s.smtp.SendMail(ctx, userCreated.Email, "Verify your email", mailBody)
+	subject := "Verify your email"
+	sentMetric := mailMetrics.MailSentMetrics{
+		Address: userCreated.Email,
+		Subject: subject,
+	}
+	err = s.smtp.SendMail(ctx, userCreated.Email, subject, mailBody)
+	if err != nil {
+		sentMetric.Status = "Error: " + err.Error()
+	} else {
+		sentMetric.Status = "Success"
+	}
+
+	_ = metrics.WritePoint(ctx, "mail", sentMetric)
 
 	return err
 }
