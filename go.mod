@@ -2,6 +2,11 @@ module github.com/yeencloud/svc-mail
 
 go 1.24.2
 
+replace (
+	github.com/yeencloud/lib-events => ../lib-events
+	github.com/yeencloud/lib-base => ../lib-base
+)
+
 require (
 	github.com/matcornic/hermes v1.3.0
 	github.com/wneessen/go-mail v0.6.2

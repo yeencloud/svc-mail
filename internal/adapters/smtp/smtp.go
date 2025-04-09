@@ -39,7 +39,7 @@ func NewSmtpClient(config *config.SmtpConfig) (*SmtpClient, error) {
 		mail.WithSMTPAuth(mail.SMTPAuthPlain),
 		mail.WithTLSPortPolicy(mail.TLSMandatory),
 		mail.WithUsername(config.Username),
-		mail.WithPassword(config.Password),
+		mail.WithPassword(config.Password.Value),
 	)
 	if err != nil {
 		return nil, err
