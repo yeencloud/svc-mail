@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/wneessen/go-mail"
 	shared "github.com/yeencloud/lib-shared"
 	"github.com/yeencloud/svc-mail/internal/domain/config"
@@ -27,6 +28,9 @@ func (s SmtpClient) SendMail(ctx context.Context, to string, subject string, bod
 	message.Subject(subject)
 	message.SetBodyString(mail.TypeTextHTML, body)
 
+	log.WithContext(ctx).
+		WithField("to", to).WithField("subject", subject).
+		Info("Sending email")
 	if err := s.client.DialAndSendWithContext(ctx, message); err != nil {
 		return err
 	}

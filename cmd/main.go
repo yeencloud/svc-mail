@@ -5,6 +5,7 @@ import (
 
 	baseservice "github.com/yeencloud/lib-base"
 	sharedConfig "github.com/yeencloud/lib-shared/config"
+	lib_user "github.com/yeencloud/lib-user"
 	"github.com/yeencloud/svc-mail/internal/adapters/event"
 	"github.com/yeencloud/svc-mail/internal/adapters/smtp"
 	"github.com/yeencloud/svc-mail/internal/adapters/templater"
@@ -19,6 +20,11 @@ func main() {
 		UseEvents:   true,
 	}, func(ctx context.Context, svc *baseservice.BaseService) error {
 		templaterConfig, err := sharedConfig.FetchConfig[config.TemplaterConfig]()
+		if err != nil {
+			return err
+		}
+
+		err = svc.Validator.RegisterValidations(lib_user.Validations())
 		if err != nil {
 			return err
 		}

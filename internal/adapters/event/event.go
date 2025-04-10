@@ -24,16 +24,16 @@ func NewEventHandler(subscriber *events.Subscriber, usecases ports.Usecases) *Ev
 }
 
 type UserCreatedEventBody struct {
-	Username      string
-	Email         string
-	Code          string
-	CodeExpiresAt string
+	Username      string `validate:"required,username"`
+	Email         string `validate:"required,email"`
+	Code          string `validate:"required,validation_code"`
+	CodeExpiresAt string `validate:"required,date_time"`
 }
 
 func (e *EventHandler) Listen(ctx context.Context) error {
 	myChannelReceiver := e.subscriber.Subscribe("user_events")
 	myChannelReceiver.Handle("USER_CREATED", func(ctx context.Context, event any) error {
-		createdUserEvent, err := events.DecodeEvent[UserCreatedEventBody](event)
+		createdUserEvent, err := events.DecodeEvent[UserCreatedEventBody](e.subscriber.Validator, ctx, event)
 		if err != nil {
 			return err
 		}
