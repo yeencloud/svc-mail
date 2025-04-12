@@ -6,7 +6,7 @@ require (
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.6.2
-	github.com/yeencloud/lib-base v0.2.6
+	github.com/yeencloud/lib-base v0.2.7
 	github.com/yeencloud/lib-events v0.1.2
 	github.com/yeencloud/lib-metrics v0.2.4
 	github.com/yeencloud/lib-shared v0.2.5
