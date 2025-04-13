@@ -53,6 +53,6 @@ func main() {
 
 		subscriber := event.NewEventHandler(mqSubscriber, usecases)
 
-		return subscriber.Listen(ctx)
+		return subscriber.Subscribe(ctx)
 	})
 }

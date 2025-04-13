@@ -30,7 +30,7 @@ type UserCreatedEventBody struct {
 	CodeExpiresAt string `validate:"required,date_time"`
 }
 
-func (e *EventHandler) Listen(ctx context.Context) error {
+func (e *EventHandler) Subscribe(ctx context.Context) error {
 	myChannelReceiver := e.subscriber.Subscribe("user_events")
 	myChannelReceiver.Handle("USER_CREATED", func(ctx context.Context, event any) error {
 		createdUserEvent, err := events.DecodeEvent[UserCreatedEventBody](e.subscriber.Validator, ctx, event)
@@ -47,5 +47,5 @@ func (e *EventHandler) Listen(ctx context.Context) error {
 		return e.usecases.UserCreated(ctx, user)
 	})
 
-	return e.subscriber.Listen(ctx)
+	return nil
 }
