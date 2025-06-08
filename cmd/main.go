@@ -13,7 +13,6 @@ import (
 	"github.com/yeencloud/svc-mail/internal/service"
 )
 
-// TODO: Add metrics for sent mail
 func main() {
 	baseservice.Run("svc-mail", baseservice.Options{
 		UseDatabase: false,

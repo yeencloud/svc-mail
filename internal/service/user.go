@@ -19,6 +19,7 @@ func (s service) UserCreated(ctx context.Context, userCreated domain.UserCreated
 		Address: userCreated.Email,
 		Subject: subject,
 	}
+	return nil
 	err = s.smtp.SendMail(ctx, userCreated.Email, subject, mailBody)
 	if err != nil {
 		sentMetric.Status = "Error: " + err.Error()
