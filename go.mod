@@ -9,7 +9,7 @@ require (
 	github.com/yeencloud/lib-base v0.2.10
 	github.com/yeencloud/lib-events v0.1.6
 	github.com/yeencloud/lib-metrics v0.2.5
-	github.com/yeencloud/lib-shared v0.2.9
+	github.com/yeencloud/lib-shared v0.2.10
 	github.com/yeencloud/lib-user v0.0.3
 )
 
