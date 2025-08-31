@@ -32,7 +32,7 @@ type UserCreatedEventBody struct {
 
 func (e *EventHandler) Subscribe(ctx context.Context) error {
 	myChannelReceiver := e.subscriber.Subscribe("user_events")
-	myChannelReceiver.Handle("USER_CREATED", func(ctx context.Context, eventJson string) error {
+	myChannelReceiver.Register("USER_CREATED", func(ctx context.Context, eventJson string) error {
 		createdUserEvent, err := events.DecodeEvent[UserCreatedEventBody](e.subscriber.Validator, ctx, eventJson)
 		if err != nil {
 			return err

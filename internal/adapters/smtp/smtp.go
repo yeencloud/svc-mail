@@ -6,7 +6,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/wneessen/go-mail"
-	shared "github.com/yeencloud/lib-shared"
+	shared "github.com/yeencloud/lib-shared/domain"
 	"github.com/yeencloud/svc-mail/internal/domain/config"
 )
 

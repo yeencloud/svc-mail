@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/matcornic/hermes"
-	shared "github.com/yeencloud/lib-shared"
+	shared "github.com/yeencloud/lib-shared/domain"
 	"github.com/yeencloud/svc-mail/internal/domain"
 )
 
