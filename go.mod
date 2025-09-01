@@ -6,7 +6,7 @@ require (
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.6.2
-	github.com/yeencloud/lib-base v0.2.13
+	github.com/yeencloud/lib-base v0.2.14
 	github.com/yeencloud/lib-events v0.1.7
 	github.com/yeencloud/lib-metrics v0.2.7
 	github.com/yeencloud/lib-shared v0.2.11
@@ -95,17 +95,3 @@ require (
 	gorm.io/driver/postgres v1.5.11 // indirect
 	gorm.io/gorm v1.25.12 // indirect
 )
-
-replace github.com/yeencloud/lib-base => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-base/
-
-replace github.com/yeencloud/lib-events => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-events/
-
-replace github.com/yeencloud/lib-metrics => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-metrics/
-
-replace github.com/yeencloud/lib-shared => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-shared/
-
-replace github.com/yeencloud/lib-user => /Users/alice/Developer/Yeencloud/backend/libs/lib-business/lib-user/
-
-replace github.com/yeencloud/lib-database => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-database/
-
-replace github.com/yeencloud/lib-httpserver => /Users/alice/Developer/Yeencloud/backend/libs/lib-technical/lib-httpserver/
