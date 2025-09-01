@@ -5,7 +5,7 @@ import (
 
 	baseservice "github.com/yeencloud/lib-base"
 	sharedConfig "github.com/yeencloud/lib-shared/config"
-	lib_user "github.com/yeencloud/lib-user"
+	libuser "github.com/yeencloud/lib-user"
 	"github.com/yeencloud/svc-mail/internal/adapters/event"
 	"github.com/yeencloud/svc-mail/internal/adapters/smtp"
 	"github.com/yeencloud/svc-mail/internal/adapters/templater"
@@ -23,7 +23,7 @@ func main() {
 			return err
 		}
 
-		err = svc.Validator.RegisterValidations(lib_user.Validations())
+		err = svc.Validator.RegisterValidations(libuser.Validations())
 		if err != nil {
 			return err
 		}
