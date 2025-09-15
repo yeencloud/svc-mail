@@ -7,7 +7,7 @@ require (
 	github.com/mailgun/mailgun-go/v5 v5.6.0
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
-	github.com/wneessen/go-mail v0.6.2
+	github.com/wneessen/go-mail v0.7.0
 	github.com/yeencloud/lib-base v0.2.15
 	github.com/yeencloud/lib-events v0.1.7
 	github.com/yeencloud/lib-metrics v0.2.7
@@ -90,9 +90,9 @@ require (
 	golang.org/x/arch v0.16.0 // indirect
 	golang.org/x/crypto v0.41.0 // indirect
 	golang.org/x/net v0.43.0 // indirect
-	golang.org/x/sync v0.16.0 // indirect
+	golang.org/x/sync v0.17.0 // indirect
 	golang.org/x/sys v0.35.0 // indirect
-	golang.org/x/text v0.28.0 // indirect
+	golang.org/x/text v0.29.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/postgres v1.5.11 // indirect
