@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/davecgh/go-spew v1.1.1
-	github.com/mailgun/mailgun-go/v5 v5.6.0
+	github.com/mailgun/mailgun-go/v5 v5.6.1
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.6.2
