@@ -2,14 +2,18 @@ package main
 
 import (
 	"context"
+	"errors"
 
 	baseservice "github.com/yeencloud/lib-base"
 	sharedConfig "github.com/yeencloud/lib-shared/config"
 	libuser "github.com/yeencloud/lib-user"
 	"github.com/yeencloud/svc-mail/internal/adapters/event"
-	"github.com/yeencloud/svc-mail/internal/adapters/smtp"
+	"github.com/yeencloud/svc-mail/internal/adapters/mail/mailgun"
+	"github.com/yeencloud/svc-mail/internal/adapters/mail/smtp"
 	"github.com/yeencloud/svc-mail/internal/adapters/templater"
+	"github.com/yeencloud/svc-mail/internal/domain"
 	"github.com/yeencloud/svc-mail/internal/domain/config"
+	"github.com/yeencloud/svc-mail/internal/ports"
 	"github.com/yeencloud/svc-mail/internal/service"
 )
 
@@ -38,17 +42,38 @@ func main() {
 			return err
 		}
 
-		smtpConfig, err := sharedConfig.FetchConfig[config.SmtpConfig]()
+		provider, err := sharedConfig.FetchConfig[config.MailProvider]()
 		if err != nil {
 			return err
 		}
 
-		smtpClient, err := smtp.NewSmtpClient(smtpConfig)
-		if err != nil {
-			return err
+		var mailSender ports.Sender
+		switch provider.Provider {
+		case "SMTP":
+			smtpConfig, err := sharedConfig.FetchConfig[config.SmtpConfig]()
+			if err != nil {
+				return err
+			}
+
+			mailSender, err = smtp.NewSmtpClient(smtpConfig)
+			if err != nil {
+				return err
+			}
+		case "Mailgun":
+			mailgunConfig, err := sharedConfig.FetchConfig[config.MailGun]()
+			if err != nil {
+				return err
+			}
+
+			mailSender, err = mailgun.NewMailgunClient(mailgunConfig)
+			if err != nil {
+				return err
+			}
+		default:
+			return errors.Join(domain.ErrUnknownMailProvider, errors.New("available: SMTP, Mailgun"))
 		}
 
-		usecases := service.NewUsecases(templateEngine, smtpClient)
+		usecases := service.NewUsecases(templateEngine, mailSender)
 
 		subscriber := event.NewEventHandler(mqSubscriber, usecases)
 

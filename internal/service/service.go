@@ -6,12 +6,12 @@ import (
 
 type service struct {
 	templater ports.Templater
-	smtp      ports.Smtp
+	sender    ports.Sender
 }
 
-func NewUsecases(templater ports.Templater, smtp ports.Smtp) service {
+func NewUsecases(templater ports.Templater, smtp ports.Sender) service {
 	return service{
 		templater: templater,
-		smtp:      smtp,
+		sender:    smtp,
 	}
 }

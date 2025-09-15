@@ -3,6 +3,8 @@ module github.com/yeencloud/svc-mail
 go 1.25
 
 require (
+	github.com/davecgh/go-spew v1.1.1
+	github.com/mailgun/mailgun-go/v5 v5.6.0
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.6.2
@@ -57,6 +59,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
+	github.com/mailgun/errors v0.4.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect

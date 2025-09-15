@@ -10,3 +10,14 @@ type SmtpConfig struct {
 	Password config.Secret `config:"SMTP_PASSWORD" default:""`
 	From     string        `config:"SMTP_FROM" default:"noreply@localhost"`
 }
+
+type MailGun struct {
+	Sender string        `config:"MAILGUN_SENDER"`
+	Domain string        `config:"MAILGUN_DOMAIN"`
+	ApiUrl string        `config:"MAILGUN_ENDPOINT" default:"https://api.mailgun.net/"`
+	ApiKey config.Secret `config:"MAILGUN_APIKEY"`
+}
+
+type MailProvider struct {
+	Provider string `config:"MAIL_PROVIDER"`
+}
