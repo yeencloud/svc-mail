@@ -3,7 +3,6 @@ package mailgun
 import (
 	"context"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/mailgun/mailgun-go/v5"
 	"github.com/yeencloud/svc-mail/internal/domain/config"
 )
