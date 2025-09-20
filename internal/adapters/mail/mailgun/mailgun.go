@@ -18,8 +18,6 @@ func (s MailGunClient) SendMail(ctx context.Context, to string, subject string, 
 	m := mailgun.NewMessage(s.config.Domain, s.config.Sender, subject, "", to)
 	m.SetHTML(body)
 
-	spew.Dump(m)
-
 	_, err := s.client.Send(ctx, m)
 	return err
 }
