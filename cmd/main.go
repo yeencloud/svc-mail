@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 
+	log "github.com/sirupsen/logrus"
 	baseservice "github.com/yeencloud/lib-base"
 	sharedConfig "github.com/yeencloud/lib-shared/config"
 	libuser "github.com/yeencloud/lib-user"
@@ -18,6 +19,8 @@ import (
 )
 
 func main() {
+	log.Info("Will run service")
+
 	baseservice.Run("svc-mail", baseservice.Options{
 		UseDatabase: false,
 		UseEvents:   true,
@@ -72,6 +75,8 @@ func main() {
 		default:
 			return errors.Join(domain.ErrUnknownMailProvider, errors.New("available: SMTP, Mailgun"))
 		}
+
+		log.Info("Mail provider set to: " + provider.Provider)
 
 		usecases := service.NewUsecases(templateEngine, mailSender)
 
