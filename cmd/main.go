@@ -19,8 +19,6 @@ import (
 )
 
 func main() {
-	log.Info("Will run service")
-
 	baseservice.Run("svc-mail", baseservice.Options{
 		UseDatabase: false,
 		UseEvents:   true,
