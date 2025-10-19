@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-redis
+data:
+  REDIS_HOST: {{ .Values.redis.host | quote }}
+  REDIS_PORT: {{ .Values.redis.port | quote }}
+  REDIS_USERNAME: {{ .Values.redis.username | quote }}
+  REDIS_PASSWORD: {{ .Values.redis.password | quote }}
+  REDIS_DATABASE: {{ .Values.redis.database | quote }}
+  REDIS_TLS: {{ .Values.redis.tls | quote }}

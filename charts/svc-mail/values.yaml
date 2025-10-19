@@ -1,0 +1,96 @@
+nameOverride: svc-mail
+
+image: 
+  repository: ghcr.io/yeencloud/svc-mail
+  tag: latest
+  pullPolicy: IfNotPresent
+
+annotations:
+secretAnnotations:
+
+labels: {}
+
+resources: 
+  replicas: 2
+  requests:
+    cpu: 200m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+priorityClassName: ""
+runtimeClassName: ""
+
+terminationGracePeriodSeconds: 3600
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: yeencloud.io/role
+              operator: In
+              values:
+                - compute
+
+metrics:
+  enabled: false
+  provider: "none"
+
+redis:
+  host: "localhost"
+  port: "6379"
+  username: ""
+  password: ""
+  database: "0"
+  tls: "false"
+
+database:
+  provider: "postgres"
+  address: "localhost"
+  port: "5432"
+  username: "postgres"
+  password: "postgres"
+  database: "postgres"
+  tls: "false"
+
+httpServer:
+  enabled: true
+  port: 8080
+  
+ingress:
+  enabled: false
+  className: ""
+  host: ""
+
+mail:
+  provider: "SMTP"
+  smtp:
+    host: "smtp.example.com"
+    port: "587"
+    username: "noreply@example.com"
+    password: "password123"
+    tls: "true"

@@ -1,0 +1,13 @@
+{{ if eq .Values.database.provider "cloudnative-pg" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-cloudnative-pg
+data:
+  PG_ADDRESS: {{ .Values.database.address | quote }}
+  PG_PORT: {{ .Values.database.port | quote }}
+  PG_USERNAME: {{ .Values.database.username | quote }}
+  PG_PASSWORD: {{ .Values.database.password | quote }}
+  PG_DATABASE: {{ .Values.database.database | quote }}
+  PG_TLS: {{ .Values.database.tls | quote }}
+{{ end }}

@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.nameOverride }}"
+spec:
+  replicas: {{ .Values.resources.replicas }}
+  selector:
+    matchLabels:
+      type: infra
+      app: {{ .Values.nameOverride }}
+  template:
+    metadata:
+      labels:
+        type: infra
+        app: {{ .Values.nameOverride }}
+      #annotations:
+      #  checksum/metrics-config: {{ include (print $.Template.BasePath "/config.metrics.yml") . | sha256sum }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}     
+          envFrom:
+            - configMapRef:
+                name: {{ .Chart.Name }}-metrics
+            - configMapRef:
+                name: {{ .Chart.Name }}-redis
+            - configMapRef:
+                name: {{ .Chart.Name }}-mail
+            {{- if eq .Values.database.provider "cloudnative-pg" }}
+            - configMapRef:
+                name: {{ .Chart.Name }}-cloudnative-pg
+            {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

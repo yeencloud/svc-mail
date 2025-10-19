@@ -1,0 +1,29 @@
+---
+# Scheduled PostgreSQL Backup - Daily
+# This creates automatic backups daily at midnight Quebec time (5 AM UTC)
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: {{ .Chart.Name }}-daily-backup
+spec:
+  # Schedule in cron format - Daily at midnight Quebec time (5 AM UTC)
+  schedule: "0 5 * * *"
+  
+  # Immediate backup after creating this resource
+  immediate: true
+  
+  # Suspend backups (set to false to enable)
+  suspend: false
+  
+  # Backup configuration
+  backupOwnerReference: self
+  
+  # Target cluster
+  cluster:
+    name: {{ .Chart.Name }}-cnpg 
+  
+  # Backup method
+  method: barmanObjectStore
+  
+  # Target: primary (backup from primary)
+  target: primary

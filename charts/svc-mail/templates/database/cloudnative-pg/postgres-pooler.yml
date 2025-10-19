@@ -1,0 +1,56 @@
+---
+# PgBouncer Connection Pooler for myapp-postgres
+# This creates a separate PgBouncer deployment that pools connections
+apiVersion: postgresql.cnpg.io/v1
+kind: Pooler
+metadata:
+  name: {{ .Chart.Name }}-pooler
+spec:
+  cluster:
+    name: {{ .Chart.Name }}-cnpg
+  
+  # Number of pooler instances
+  instances: 2
+  
+  # Type of pooler (rw = read-write, ro = read-only)
+  type: rw
+  
+  # PgBouncer configuration
+  pgbouncer:
+    poolMode: transaction  # transaction, session, or statement
+    parameters:
+      max_client_conn: "1000"      # Max client connections to pooler
+      default_pool_size: "25"      # Connections per user/database
+      max_db_connections: "100"    # Total connections to PostgreSQL
+      max_user_connections: "100"  # Max per user
+      reserve_pool_size: "5"       # Emergency pool
+      reserve_pool_timeout: "5"    # Seconds
+      log_connections: "0"
+      log_disconnections: "0"
+  
+  # Deployment template
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-pooler
+    spec:
+      # Run on storage nodes with PostgreSQL for low latency
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: yeencloud.io/role
+                    operator: In
+                    values:
+                      - storage
+      
+      containers:
+        - name: pgbouncer
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi

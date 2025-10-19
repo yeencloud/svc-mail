@@ -1,0 +1,63 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Chart.Name }}-cnpg
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17
+
+  storage:
+    storageClass: yc-ssd
+    size: 1Gi
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+      # Node affinity - run on storage nodes
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: yeencloud.io/role
+                operator: In
+                values:
+                  - storage
+  
+  # Monitoring
+  monitoring:
+    enablePodMonitor: true
+
+       
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://pg-backup/
+      endpointURL: http://10.0.3.2:9000
+      
+      s3Credentials:
+        accessKeyId:
+          name: postgres-backup-minio
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: postgres-backup-minio
+          key: ACCESS_SECRET_KEY
+      
+      wal:
+        compression: gzip
+        maxParallel: 2
+      
+      data:
+        compression: gzip
+        jobs: 2
+    
+    retentionPolicy: "30d"  # Keep backups for 30 days
+  
+  # PostgreSQL configuration
+  postgresql:
+    parameters:
+      max_connections: "20"
+      shared_buffers: "128MB"

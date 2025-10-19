@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-metrics
+data:
+  METRICS_PROVIDER: {{ .Values.metrics.provider | quote }}
