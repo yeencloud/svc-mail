@@ -3,7 +3,6 @@ module github.com/yeencloud/svc-mail
 go 1.25
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/mailgun/mailgun-go/v5 v5.6.0
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
@@ -88,11 +87,11 @@ require (
 	github.com/yeencloud/lib-httpserver v0.2.7 // indirect
 	github.com/yeencloud/lib-httpserver/contract v1.0.0 // indirect
 	golang.org/x/arch v0.16.0 // indirect
-	golang.org/x/crypto v0.41.0 // indirect
-	golang.org/x/net v0.43.0 // indirect
-	golang.org/x/sync v0.16.0 // indirect
-	golang.org/x/sys v0.35.0 // indirect
-	golang.org/x/text v0.28.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/postgres v1.5.11 // indirect
