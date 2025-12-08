@@ -3,7 +3,6 @@ module github.com/yeencloud/svc-mail
 go 1.25
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/mailgun/mailgun-go/v5 v5.6.0
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
@@ -11,8 +10,8 @@ require (
 	github.com/yeencloud/lib-base v0.2.15
 	github.com/yeencloud/lib-events v0.1.7
 	github.com/yeencloud/lib-metrics v0.2.7
-	github.com/yeencloud/lib-shared v0.2.11
-	github.com/yeencloud/lib-user v0.0.4
+	github.com/yeencloud/lib-shared v0.2.15
+	github.com/yeencloud/lib-user v0.0.6
 )
 
 require (
@@ -32,14 +31,14 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/ekyoung/gin-nice-recovery v0.0.0-20160510022553-1654dca486db // indirect
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/gabriel-vasile/mimetype v1.4.9 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.10 // indirect
 	github.com/gin-contrib/cors v1.7.5 // indirect
 	github.com/gin-contrib/sse v1.1.0 // indirect
 	github.com/gin-gonic/gin v1.10.0 // indirect
 	github.com/go-errors/errors v1.5.1 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.27.0 // indirect
+	github.com/go-playground/validator/v10 v10.28.0 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/google/uuid v1.6.0 // indirect
@@ -88,11 +87,11 @@ require (
 	github.com/yeencloud/lib-httpserver v0.2.7 // indirect
 	github.com/yeencloud/lib-httpserver/contract v1.0.0 // indirect
 	golang.org/x/arch v0.16.0 // indirect
-	golang.org/x/crypto v0.41.0 // indirect
-	golang.org/x/net v0.43.0 // indirect
-	golang.org/x/sync v0.16.0 // indirect
-	golang.org/x/sys v0.35.0 // indirect
-	golang.org/x/text v0.28.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/postgres v1.5.11 // indirect
