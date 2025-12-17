@@ -3,7 +3,7 @@ module github.com/yeencloud/svc-mail
 go 1.25
 
 require (
-	github.com/mailgun/mailgun-go/v5 v5.8.1
+	github.com/mailgun/mailgun-go/v5 v5.9.0
 	github.com/matcornic/hermes v1.3.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.7.2
