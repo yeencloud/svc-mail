@@ -8,9 +8,9 @@ require (
 	github.com/sirupsen/logrus v1.9.3
 	github.com/wneessen/go-mail v0.7.2
 	github.com/yeencloud/lib-base v0.2.17
-	github.com/yeencloud/lib-events v0.1.10
+	github.com/yeencloud/lib-events v0.1.11
 	github.com/yeencloud/lib-metrics v0.2.8
-	github.com/yeencloud/lib-shared v0.2.15
+	github.com/yeencloud/lib-shared v0.2.16
 	github.com/yeencloud/lib-user v0.0.6
 )
 
@@ -98,13 +98,13 @@ require (
 	github.com/yeencloud/lib-httpserver v0.2.10 // indirect
 	go.uber.org/mock v0.5.0 // indirect
 	golang.org/x/arch v0.20.0 // indirect
-	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/mod v0.29.0 // indirect
-	golang.org/x/net v0.47.0 // indirect
-	golang.org/x/sync v0.18.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.31.0 // indirect
-	golang.org/x/tools v0.38.0 // indirect
+	golang.org/x/crypto v0.46.0 // indirect
+	golang.org/x/mod v0.30.0 // indirect
+	golang.org/x/net v0.48.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
+	golang.org/x/sys v0.39.0 // indirect
+	golang.org/x/text v0.32.0 // indirect
+	golang.org/x/tools v0.39.0 // indirect
 	google.golang.org/protobuf v1.36.9 // indirect
 	gorm.io/driver/postgres v1.5.11 // indirect
 	gorm.io/gorm v1.25.12 // indirect
